@@ -8,3 +8,13 @@ import { cookieOptions } from "../config/cookies.js";
 export function setAuthCookie(res: Response, token: string) {
   res.cookie("token", token, cookieOptions);
 }
+
+/**
+ * Clear cookie during logout.
+ */
+export function clearAuthCookie(res: Response) {
+  res.clearCookie("token", {
+    ...cookieOptions,
+    maxAge: 0,
+  });
+}

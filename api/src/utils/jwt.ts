@@ -21,3 +21,11 @@ export function signJWT(payload: JWTPayload, expiresIn: string = "7d") {
     expiresIn: expiresIn as SignOptions["expiresIn"],
   });
 }
+
+/**
+ * Verify JWT and return payload.
+ * Throws an error if token is invalid or expired.
+ */
+export function verifyJWT(token: string): JWTPayload {
+  return jwt.verify(token, ENV.JWT_SECRET) as JWTPayload;
+}

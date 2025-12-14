@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { login, register } from "../controllers/auth.controller.js";
-import { validate } from "../middleware/validate.js";
 import { z } from "zod";
+import { login, logout, register } from "../controllers/auth.controller.js";
+import { validate } from "../middleware/validate.js";
 import { authRateLimiter } from "../middleware/rateLimit.js";
+import { authGuard } from "../middleware/auth.js";
 
 const router = Router();
 
@@ -30,5 +31,10 @@ router.post("/register", validate(RegisterSchema), register);
  * POST /api/auth/login
  */
 router.post("/login", authRateLimiter, validate(LoginSchema), login);
+
+/**
+ * POST /api/auth/logout
+ */
+router.post("/logout", authGuard, logout);
 
 export default router;

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { User } from "../models/User.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { success, failure } from "../utils/response.js";
-import { setAuthCookie } from "../utils/cookies.js";
+import { clearAuthCookie, setAuthCookie } from "../utils/cookies.js";
 import { signJWT } from "../utils/jwt.js";
 
 /**
@@ -25,7 +25,7 @@ export const register = asyncHandler(async (req: Request, res: Response) => {
 
   const token = signJWT({
     userId: user._id.toString(),
-    role: user.role
+    role: user.role,
   });
 
   setAuthCookie(res, token);
@@ -47,7 +47,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
 
   const token = signJWT({
     userId: user._id.toString(),
-    role: user.role
+    role: user.role,
   });
 
   setAuthCookie(res, token);
@@ -56,4 +56,12 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
     userId: user._id,
     role: user.role,
   });
+});
+
+/**
+ * Logout endpoint.
+ */
+export const logout = asyncHandler(async (_req: Request, res: Response) => {
+  clearAuthCookie(res);
+  return success(res, "Logged out");
 });
