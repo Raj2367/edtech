@@ -23,3 +23,21 @@ export const register = asyncHandler(async (req: Request, res: Response) => {
 
   return success(res, { userId: user._id, role: user.role }, 201);
 });
+
+/**
+ * Login the user.
+ */
+export const login = asyncHandler(async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+  if (!user) return failure(res, "Invalid credentials", 400);
+
+  const isValid = await user.comparePassword(password);
+  if (!isValid) return failure(res, "Invalid credentials", 400);
+
+  return success(res, {
+    userId: user._id,
+    role: user.role,
+  });
+});
