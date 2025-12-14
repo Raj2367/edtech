@@ -11,13 +11,17 @@ const envSchema = z.object({
   MONGO_URL: z.url(),
   FRONTEND_URL: z.url(),
   JWT_SECRET: z.string().min(16),
-  PORT: z.string().optional()
+  COOKIE_DOMAIN: z.string(),
+  PORT: z.string().optional(),
 });
 
 const parsed = envSchema.safeParse(process.env);
 
 if (!parsed.success) {
-  console.error("❌ Invalid environment variables:", parsed.error.flatten().fieldErrors);
+  console.error(
+    "❌ Invalid environment variables:",
+    parsed.error.flatten().fieldErrors
+  );
   process.exit(1);
 }
 

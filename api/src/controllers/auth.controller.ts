@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { User } from "../models/User.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { success, failure } from "../utils/response.js";
+import { setAuthCookie } from "../utils/cookies.js";
+import { signJWT } from "../utils/jwt.js";
 
 /**
  * Register a new user.
@@ -21,6 +23,13 @@ export const register = asyncHandler(async (req: Request, res: Response) => {
     role: role || "STUDENT",
   });
 
+  const token = signJWT({
+    userId: user._id.toString(),
+    role: user.role
+  });
+
+  setAuthCookie(res, token);
+
   return success(res, { userId: user._id, role: user.role }, 201);
 });
 
@@ -35,6 +44,13 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
 
   const isValid = await user.comparePassword(password);
   if (!isValid) return failure(res, "Invalid credentials", 400);
+
+  const token = signJWT({
+    userId: user._id.toString(),
+    role: user.role
+  });
+
+  setAuthCookie(res, token);
 
   return success(res, {
     userId: user._id,
