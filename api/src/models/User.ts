@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 import bcrypt from "bcryptjs";
 
 /**
@@ -16,7 +16,7 @@ export interface IUser extends Document {
 const UserSchema = new Schema<IUser>(
   {
     name: { type: String, required: true, minlength: 2 },
-    email: { type: String, required: true, unique: true, lowercase: true },
+    email: { type: String, required: true, lowercase: true },
     password: { type: String, required: true },
     role: {
       type: String,
@@ -46,6 +46,6 @@ UserSchema.methods.comparePassword = async function (candidate: string) {
 };
 
 // Performance: index on email for faster queries
-UserSchema.index({ email: 1 });
+UserSchema.index({ email: 1 }, { unique: true });
 
 export const User = mongoose.model<IUser>("User", UserSchema);

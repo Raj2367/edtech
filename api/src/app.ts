@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import helmet from "helmet";
 import { ENV } from "./config/env.js";
+import routes from "./routes/index.js";
 const app = express();
 
 // security headers
@@ -21,5 +22,8 @@ app.use(express.json());
 
 // secure cookie parser
 app.use(cookieParser());
+
+// API Routes
+app.use("/api", routes);
 
 export default app;

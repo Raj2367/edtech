@@ -10,6 +10,7 @@ dotenv.config();
 const envSchema = z.object({
   MONGO_URL: z.url(),
   FRONTEND_URL: z.url(),
+  JWT_SECRET: z.string().min(16),
   PORT: z.string().optional()
 });
 
