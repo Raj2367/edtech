@@ -65,3 +65,12 @@ export const logout = asyncHandler(async (_req: Request, res: Response) => {
   clearAuthCookie(res);
   return success(res, "Logged out");
 });
+
+/**
+ * Retrieve current session user.
+ * Works beautifully with SSR in Next.js.
+ */
+export const me = asyncHandler(async (req: Request, res: Response) => {
+  if (!req.user) return failure(res, "Not authenticated", 401);
+  return success(res, { user: req.user });
+});

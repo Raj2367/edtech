@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { z } from "zod";
-import { login, logout, register } from "../controllers/auth.controller";
+import { login, logout, me, register } from "../controllers/auth.controller";
 import { validate } from "../middleware/validate";
 import { authRateLimiter } from "../middleware/rateLimit";
 import { authGuard } from "../middleware/auth";
@@ -36,5 +36,11 @@ router.post("/login", authRateLimiter, validate(LoginSchema), login);
  * POST /api/auth/logout
  */
 router.post("/logout", authGuard, logout);
+
+/**
+ * GET /api/auth/me
+ * SSR-friendly endpoint for Next.js
+ */
+router.get("/me", authGuard, me);
 
 export default router;
