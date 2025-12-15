@@ -7,10 +7,16 @@ import routes from "./routes/index.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 const app = express();
 
-// security headers
+/**
+ * SECURITY: Helmet adds CSP, XSS protection, HSTS,
+ * no-sniff, referrer policies, etc.
+ */
 app.use(helmet());
 
-// allow frontend (Vercel) domain
+/**
+ * SECURITY: Allow cross-site cookies
+ * Required for Render (backend) + Vercel (frontend)
+ */
 app.use(
   cors({
     origin: ENV.FRONTEND_URL,

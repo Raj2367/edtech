@@ -16,7 +16,7 @@ export interface ICourse extends Document {
 const CourseSchema = new Schema<ICourse>(
   {
     title: { type: String, required: true },
-    slug: { type: String, unique: true },
+    slug: { type: String },
     description: { type: String },
     published: { type: Boolean, default: false },
     instructorId: { type: Schema.Types.ObjectId, ref: "User", required: true },
@@ -34,7 +34,7 @@ CourseSchema.pre("save", function () {
 });
 
 // Useful for search, pagination, and filtering
-CourseSchema.index({ slug: 1 });
+CourseSchema.index({ slug: 1 }, { unique: true });
 CourseSchema.index({ instructorId: 1 });
 
 export const Course = mongoose.model<ICourse>("Course", CourseSchema);
