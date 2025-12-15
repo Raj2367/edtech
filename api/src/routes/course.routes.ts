@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createCourse,
   getAllCourses,
+  getCourseBySlug,
   getInstructorCourses,
 } from "../controllers/course.controller.js";
 
@@ -45,5 +46,11 @@ router.post(
  * Instructor dashboard — requires auth
  */
 router.get("/instructor", authGuard, requireRole("INSTRUCTOR"), getInstructorCourses);
+
+/**
+ * GET /api/courses/:slug
+ * SSR route used for public course page
+ */
+router.get("/:slug", getCourseBySlug);
 
 export default router;

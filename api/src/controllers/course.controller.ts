@@ -44,3 +44,15 @@ export const getInstructorCourses = asyncHandler(
     return success(res, courses);
   }
 );
+
+/**
+ * Get a single course by slug.
+ */
+export const getCourseBySlug = asyncHandler(async (req: Request, res: Response) => {
+  const { slug } = req.params;
+
+  const course = await Course.findOne({ slug });
+  if (!course) return failure(res, "Course not found", 404);
+
+  return success(res, course);
+});
