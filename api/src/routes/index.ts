@@ -1,8 +1,8 @@
 import { Router } from "express";
 
-import authRoutes from "./auth.routes.js";
-import courseRoutes from "./course.routes.js";
-import lessonRoutes from "./lesson.routes.js";
+import authRoutes from "./auth.routes";
+import courseRoutes from "./course.routes";
+import lessonRoutes from "./lesson.routes";
 
 /**
  * Master API router for clean express organization.

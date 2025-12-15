@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { z } from "zod";
-import { login, logout, register } from "../controllers/auth.controller.js";
-import { validate } from "../middleware/validate.js";
-import { authRateLimiter } from "../middleware/rateLimit.js";
-import { authGuard } from "../middleware/auth.js";
+import { login, logout, register } from "../controllers/auth.controller";
+import { validate } from "../middleware/validate";
+import { authRateLimiter } from "../middleware/rateLimit";
+import { authGuard } from "../middleware/auth";
 
 const router = Router();
 

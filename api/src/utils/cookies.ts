@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { cookieOptions } from "../config/cookies.js";
+import { cookieOptions } from "../config/cookies";
 
 /**
  * Set JWT as HttpOnly cookie.

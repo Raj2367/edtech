@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { failure } from "../utils/response.js";
+import { failure } from "../utils/response";
 
 /**
  * Enforces role-based access control.

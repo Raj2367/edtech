@@ -1,9 +1,9 @@
 import "dotenv/config";
 import mongoose from "mongoose";
-import { User } from "./models/User.js";
-import { Course } from "./models/Course.js";
-import { Lesson } from "./models/Lesson.js";
-import { connectDB } from "./config/db.js";
+import { User } from "./models/User";
+import { Course } from "./models/Course";
+import { Lesson } from "./models/Lesson";
+import { connectDB } from "./config/db";
 
 /**
  * Utility: sleep function for nicer console flow.

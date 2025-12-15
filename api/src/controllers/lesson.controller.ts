@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { Lesson } from "../models/Lesson.js";
-import { Course } from "../models/Course.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
-import { success, failure } from "../utils/response.js";
+import { Lesson } from "../models/Lesson";
+import { Course } from "../models/Course";
+import { asyncHandler } from "../utils/asyncHandler";
+import { success, failure } from "../utils/response";
 
 /**
  * Validate instructor owns the course.

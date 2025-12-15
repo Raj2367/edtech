@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { z } from "zod";
-import { failure } from "../utils/response.js";
+import { failure } from "../utils/response";
 
 /**
  * Validates incoming requests using Zod schemas.

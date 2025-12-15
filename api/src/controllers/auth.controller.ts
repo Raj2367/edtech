@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { User } from "../models/User.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
-import { success, failure } from "../utils/response.js";
-import { clearAuthCookie, setAuthCookie } from "../utils/cookies.js";
-import { signJWT } from "../utils/jwt.js";
+import { User } from "../models/User";
+import { asyncHandler } from "../utils/asyncHandler";
+import { success, failure } from "../utils/response";
+import { clearAuthCookie, setAuthCookie } from "../utils/cookies";
+import { signJWT } from "../utils/jwt";
 
 /**
  * Register a new user.

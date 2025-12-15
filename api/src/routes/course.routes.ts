@@ -6,11 +6,11 @@ import {
   getCourseBySlug,
   getInstructorCourses,
   updateCourse,
-} from "../controllers/course.controller.js";
+} from "../controllers/course.controller";
 
-import { validate } from "../middleware/validate.js";
-import { requireRole } from "../middleware/authorize.js";
-import { authGuard } from "../middleware/auth.js";
+import { validate } from "../middleware/validate";
+import { requireRole } from "../middleware/authorize";
+import { authGuard } from "../middleware/auth";
 
 import { z } from "zod";
 

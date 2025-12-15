@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { verifyJWT } from "../utils/jwt.js";
-import { failure } from "../utils/response.js";
+import { verifyJWT } from "../utils/jwt";
+import { failure } from "../utils/response";
 
 /**
  * Extracts JWT from HttpOnly cookie and identifies user session.

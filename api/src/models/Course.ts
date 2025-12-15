@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { generateSlug } from "../utils/slugify.js";
+import { generateSlug } from "../utils/slugify";
 
 /**
  * Course document interface.

@@ -2,9 +2,9 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import helmet from "helmet";
-import { ENV } from "./config/env.js";
-import routes from "./routes/index.js";
-import { errorHandler } from "./middleware/errorHandler.js";
+import { ENV } from "./config/env";
+import routes from "./routes/index";
+import { errorHandler } from "./middleware/errorHandler";
 const app = express();
 
 /**

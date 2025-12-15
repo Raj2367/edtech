@@ -1,5 +1,5 @@
 import jwt, { SignOptions } from "jsonwebtoken";
-import { ENV } from "../config/env.js";
+import { ENV } from "../config/env";
 
 /**
  * Payload built into JWT tokens.

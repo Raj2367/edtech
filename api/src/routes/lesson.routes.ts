@@ -4,11 +4,11 @@ import {
   deleteLesson,
   getCourseLessons,
   updateLesson,
-} from "../controllers/lesson.controller.js";
+} from "../controllers/lesson.controller";
 
-import { authGuard } from "../middleware/auth.js";
-import { requireRole } from "../middleware/authorize.js";
-import { validate } from "../middleware/validate.js";
+import { authGuard } from "../middleware/auth";
+import { requireRole } from "../middleware/authorize";
+import { validate } from "../middleware/validate";
 
 import { z } from "zod";
 

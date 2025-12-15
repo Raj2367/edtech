@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { Course } from "../models/Course.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
-import { success, failure } from "../utils/response.js";
+import { Course } from "../models/Course";
+import { asyncHandler } from "../utils/asyncHandler";
+import { success, failure } from "../utils/response";
 
 /**
  * Get all published courses (Public).
