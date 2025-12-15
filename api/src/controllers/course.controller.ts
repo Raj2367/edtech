@@ -32,3 +32,15 @@ export const createCourse = asyncHandler(
     return success(res, course, 201);
   }
 );
+
+/**
+ * Get all courses created by instructor (Dashboard).
+ */
+export const getInstructorCourses = asyncHandler(
+  async (req: Request, res: Response) => {
+    const courses = await Course.find({ instructorId: req.user!.userId }).sort({
+      createdAt: -1,
+    });
+    return success(res, courses);
+  }
+);

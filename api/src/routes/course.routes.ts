@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createCourse,
   getAllCourses,
+  getInstructorCourses,
 } from "../controllers/course.controller.js";
 
 import { validate } from "../middleware/validate.js";
@@ -38,5 +39,11 @@ router.post(
   validate(CourseSchema),
   createCourse
 );
+
+/**
+ * GET /api/courses/instructor
+ * Instructor dashboard — requires auth
+ */
+router.get("/instructor", authGuard, requireRole("INSTRUCTOR"), getInstructorCourses);
 
 export default router;
