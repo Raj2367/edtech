@@ -48,11 +48,35 @@ export const getInstructorCourses = asyncHandler(
 /**
  * Get a single course by slug.
  */
-export const getCourseBySlug = asyncHandler(async (req: Request, res: Response) => {
-  const { slug } = req.params;
+export const getCourseBySlug = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { slug } = req.params;
 
-  const course = await Course.findOne({ slug });
-  if (!course) return failure(res, "Course not found", 404);
+    const course = await Course.findOne({ slug });
+    if (!course) return failure(res, "Course not found", 404);
 
-  return success(res, course);
-});
+    return success(res, course);
+  }
+);
+
+/**
+ * Update course details.
+ * Only the creator can update.
+ */
+export const updateCourse = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { courseId } = req.params;
+
+    const course = await Course.findById(courseId);
+    if (!course) return failure(res, "Course not found", 404);
+
+    if (course.instructorId.toString() !== req.user!.userId) {
+      return failure(res, "Permission denied", 403);
+    }
+
+    Object.assign(course, req.body);
+    await course.save();
+
+    return success(res, course);
+  }
+);

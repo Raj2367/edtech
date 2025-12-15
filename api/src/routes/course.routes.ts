@@ -4,6 +4,7 @@ import {
   getAllCourses,
   getCourseBySlug,
   getInstructorCourses,
+  updateCourse,
 } from "../controllers/course.controller.js";
 
 import { validate } from "../middleware/validate.js";
@@ -52,5 +53,17 @@ router.get("/instructor", authGuard, requireRole("INSTRUCTOR"), getInstructorCou
  * SSR route used for public course page
  */
 router.get("/:slug", getCourseBySlug);
+
+/**
+ * PATCH /api/courses/:courseId
+ * Only the instructor who owns the course may edit
+ */
+router.patch(
+  "/edit/:courseId",
+  authGuard,
+  requireRole("INSTRUCTOR"),
+  validate(CourseSchema),
+  updateCourse
+);
 
 export default router;
