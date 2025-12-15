@@ -50,3 +50,22 @@ export const getCourseLessons = asyncHandler(
     return success(res, lessons);
   }
 );
+
+/**
+ * Update a lesson.
+ */
+export const updateLesson = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { lessonId } = req.params;
+
+    const lesson = await Lesson.findById(lessonId);
+    if (!lesson) return failure(res, "Lesson not found", 404);
+
+    await checkOwnership(req.user!.userId, lesson.courseId.toString());
+
+    Object.assign(lesson, req.body);
+    await lesson.save();
+
+    return success(res, lesson);
+  }
+);

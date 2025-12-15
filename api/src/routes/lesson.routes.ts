@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { createLesson, getCourseLessons } from "../controllers/lesson.controller.js";
+import {
+  createLesson,
+  getCourseLessons,
+  updateLesson,
+} from "../controllers/lesson.controller.js";
 
 import { authGuard } from "../middleware/auth.js";
 import { requireRole } from "../middleware/authorize.js";
@@ -34,5 +38,16 @@ router.post(
  * Public lessons for a course (used by SSR)
  */
 router.get("/:courseId", getCourseLessons);
+
+/**
+ * PATCH /api/lessons/update/:lessonId
+ */
+router.patch(
+  "/update/:lessonId",
+  authGuard,
+  requireRole("INSTRUCTOR"),
+  validate(LessonSchema),
+  updateLesson
+);
 
 export default router;
