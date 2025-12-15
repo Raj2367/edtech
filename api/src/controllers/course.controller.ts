@@ -80,3 +80,22 @@ export const updateCourse = asyncHandler(
     return success(res, course);
   }
 );
+
+/**
+ * Delete course.
+ */
+export const deleteCourse = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { courseId } = req.params;
+
+    const course = await Course.findById(courseId);
+    if (!course) return failure(res, "Course not found", 404);
+
+    if (course.instructorId.toString() !== req.user!.userId) {
+      return failure(res, "Permission denied", 403);
+    }
+
+    await course.deleteOne();
+    return success(res, "Course deleted");
+  }
+);

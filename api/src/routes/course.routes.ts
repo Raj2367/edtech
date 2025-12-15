@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createCourse,
+  deleteCourse,
   getAllCourses,
   getCourseBySlug,
   getInstructorCourses,
@@ -64,6 +65,16 @@ router.patch(
   requireRole("INSTRUCTOR"),
   validate(CourseSchema),
   updateCourse
+);
+
+/**
+ * DELETE /api/courses/:courseId
+ */
+router.delete(
+  "/:courseId",
+  authGuard,
+  requireRole("INSTRUCTOR"),
+  deleteCourse
 );
 
 export default router;
