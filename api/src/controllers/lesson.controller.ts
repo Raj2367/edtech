@@ -69,3 +69,20 @@ export const updateLesson = asyncHandler(
     return success(res, lesson);
   }
 );
+
+/**
+ * Delete lesson.
+ */
+export const deleteLesson = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { lessonId } = req.params;
+
+    const lesson = await Lesson.findById(lessonId);
+    if (!lesson) return failure(res, "Lesson not found", 404);
+
+    await checkOwnership(req.user!.userId, lesson.courseId.toString());
+
+    await lesson.deleteOne();
+    return success(res, "Lesson deleted");
+  }
+);

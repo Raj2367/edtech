@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createLesson,
+  deleteLesson,
   getCourseLessons,
   updateLesson,
 } from "../controllers/lesson.controller.js";
@@ -49,5 +50,10 @@ router.patch(
   validate(LessonSchema),
   updateLesson
 );
+
+/**
+ * DELETE /api/lessons/:lessonId
+ */
+router.delete("/:lessonId", authGuard, requireRole("INSTRUCTOR"), deleteLesson);
 
 export default router;
