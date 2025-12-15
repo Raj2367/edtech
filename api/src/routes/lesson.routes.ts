@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createLesson } from "../controllers/lesson.controller.js";
+import { createLesson, getCourseLessons } from "../controllers/lesson.controller.js";
 
 import { authGuard } from "../middleware/auth.js";
 import { requireRole } from "../middleware/authorize.js";
@@ -28,5 +28,11 @@ router.post(
   validate(LessonSchema),
   createLesson
 );
+
+/**
+ * GET /api/lessons/:courseId
+ * Public lessons for a course (used by SSR)
+ */
+router.get("/:courseId", getCourseLessons);
 
 export default router;

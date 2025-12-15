@@ -38,3 +38,15 @@ export const createLesson = asyncHandler(
     return success(res, lesson, 201);
   }
 );
+
+/**
+ * Get all lessons for a course (public or SSR).
+ */
+export const getCourseLessons = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { courseId } = req.params;
+
+    const lessons = await Lesson.find({ courseId }).sort({ position: 1 });
+    return success(res, lessons);
+  }
+);
