@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createCourse,
+  getAllCourses,
 } from "../controllers/course.controller.js";
 
 import { validate } from "../middleware/validate.js";
@@ -19,6 +20,12 @@ const CourseSchema = z.object({
   description: z.string().optional(),
   published: z.boolean().optional(),
 });
+
+/**
+ * GET /api/courses
+ * Public route — returns published courses
+ */
+router.get("/", getAllCourses);
 
 /**
  * POST /api/courses

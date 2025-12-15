@@ -4,6 +4,18 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { success, failure } from "../utils/response.js";
 
 /**
+ * Get all published courses (Public).
+ */
+export const getAllCourses = asyncHandler(
+  async (_req: Request, res: Response) => {
+    const courses = await Course.find({ published: true }).sort({
+      createdAt: -1,
+    });
+    return success(res, courses);
+  }
+);
+
+/**
  * Create a new course (Instructor only).
  */
 export const createCourse = asyncHandler(
