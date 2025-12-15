@@ -63,6 +63,35 @@ async function seed() {
     )
   );
 
+  console.log("📘 Creating lessons for each course...");
+
+  const lessonTemplates = [
+    {
+      title: "Lesson 1: Overview",
+      content:
+        "This is the introduction lesson content. Replace with real data.",
+    },
+    {
+      title: "Lesson 2: Deep Dive",
+      content: "This lesson covers deeper insights into the topic.",
+    },
+    {
+      title: "Lesson 3: Practical Exercise",
+      content: "This lesson provides hands-on tasks.",
+    },
+  ];
+
+  for (const course of courses) {
+    for (let i = 0; i < lessonTemplates.length; i++) {
+      await Lesson.create({
+        courseId: course._id,
+        title: `${lessonTemplates[i].title} for ${course.title}`,
+        content: lessonTemplates[i].content,
+        position: i,
+      });
+    }
+  }
+
   console.log("✅ Seeding complete!");
   console.log("📌 Admin login → admin@example.com / AdminPass123!");
   console.log(

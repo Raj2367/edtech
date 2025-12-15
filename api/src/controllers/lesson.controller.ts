@@ -1,0 +1,40 @@
+import { Request, Response } from "express";
+import { Lesson } from "../models/Lesson.js";
+import { Course } from "../models/Course.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { success, failure } from "../utils/response.js";
+
+/**
+ * Validate instructor owns the course.
+ */
+async function checkOwnership(userId: string, courseId: string) {
+  const course = await Course.findById(courseId);
+  if (!course) throw new Error("Course not found");
+
+  if (course.instructorId.toString() !== userId) {
+    throw new Error("Permission denied");
+  }
+}
+
+/**
+ * Create lesson.
+ */
+export const createLesson = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { courseId } = req.params;
+    const { title, content } = req.body;
+
+    await checkOwnership(req.user!.userId, courseId);
+
+    const position = await Lesson.countDocuments({ courseId });
+
+    const lesson = await Lesson.create({
+      courseId,
+      title,
+      content,
+      position,
+    });
+
+    return success(res, lesson, 201);
+  }
+);
