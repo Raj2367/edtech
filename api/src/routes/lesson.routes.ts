@@ -3,6 +3,7 @@ import {
   createLesson,
   deleteLesson,
   getCourseLessons,
+  getLessonById,
   updateLesson,
 } from "../controllers/lesson.controller";
 
@@ -39,6 +40,11 @@ router.post(
  * Public lessons for a course (used by SSR)
  */
 router.get("/:courseId", getCourseLessons);
+
+/**
+ * GET /api/lessons/single/:lessonId
+ */
+router.get("/single/:lessonId", authGuard, getLessonById);
 
 /**
  * PATCH /api/lessons/update/:lessonId

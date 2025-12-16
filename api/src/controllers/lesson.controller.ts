@@ -52,6 +52,20 @@ export const getCourseLessons = asyncHandler(
 );
 
 /**
+ * Get single lesson by ID.
+ */
+export const getLessonById = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { lessonId } = req.params;
+
+    const lesson = await Lesson.findById(lessonId);
+    if (!lesson) return failure(res, "Lesson not found", 404);
+
+    return success(res, lesson);
+  }
+);
+
+/**
  * Update a lesson.
  */
 export const updateLesson = asyncHandler(
