@@ -26,7 +26,9 @@ export async function createLessonAction(courseId: string, formData: FormData) {
   } catch (err: any) {
     return { error: "Failed to create lesson" };
   }
-  if (success) redirect("lessons");
+  if (success) {
+    redirect('/courses');
+  }
 }
 
 /**

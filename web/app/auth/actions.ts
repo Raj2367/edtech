@@ -71,3 +71,19 @@ export async function loginAction(formData: FormData) {
   }
   if (success) redirect("/dashboard");
 }
+
+/**
+ * Logout
+ */
+export async function logoutAction() {
+  try {
+    const token = cookies().get("token");
+    if (token) {
+      api.defaults.headers.common["Cookie"] = `token=${token.value}`;
+    }
+    await api.post("/api/auth/logout", {}, { withCredentials: true });
+    cookies().delete("token");
+  } catch {}
+
+  redirect("/");
+}

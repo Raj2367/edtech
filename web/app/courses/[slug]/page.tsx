@@ -1,7 +1,6 @@
 import { apiFetch } from "@/lib/api";
 import dynamic from "next/dynamic";
 import { getSession } from "@/lib/session";
-import { redirect } from "next/navigation";
 import { updateCourseAction } from "../actions";
 
 const CourseForm = dynamic(() => import("@/components/courses/CourseForm"), {
