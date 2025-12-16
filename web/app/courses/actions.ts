@@ -32,3 +32,32 @@ export async function createCourseAction(formData: FormData) {
     redirect(`/courses/${slug}`);
   }
 }
+
+/**
+ * Update existing course
+ */
+export async function updateCourseAction(formData: FormData) {
+  const title = formData.get("title") as string;
+  const description = formData.get("description") as string;
+  const courseId = formData.get("courseId") as string;
+  let res = null,
+    success = false;
+  try {
+    const token = cookies().get("token");
+    if (token) {
+      api.defaults.headers.common["Cookie"] = `token=${token.value}`;
+    }
+    res = await api.patch(
+      `/api/courses/edit/${courseId}`,
+      { title, description },
+      { withCredentials: true }
+    );
+    success = true;
+  } catch (err: any) {
+    return { error: "Failed to update course." };
+  }
+  if (success) {
+    const slug = res.data.data.slug;
+    redirect(`/courses/${slug}`);
+  }
+}
