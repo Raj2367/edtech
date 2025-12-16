@@ -14,7 +14,7 @@ export default function LoginPage() {
 
         <label className="block mb-4">
           <span className="text-gray-700 font-medium">Email</span>
-          <Input name="email" type="email" required />
+          <Input name="email" type="email" placeholder="Email" required />
         </label>
 
         <label className="block mb-4">
