@@ -4,7 +4,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <section className="min-h-screen flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md p-6 hidden md:block">
+      <aside className="w-64 bg-white shadow-md p-6 md:block">
         <h2 className="text-xl font-semibold mb-6">Dashboard</h2>
 
         <nav className="space-y-4">
