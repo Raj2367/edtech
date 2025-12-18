@@ -30,10 +30,8 @@ export async function registerAction(formData: FormData) {
     }
     success = true;
   } catch (err: any) {
-    console.log(
-      `{ error: Registration failed: ${err?.response?.data?.message} }`
-    );
-    return;
+    console.log(`{ error: Registration failed: ${err?.response?.data} }`);
+    return { error: `Registration failed : ${err?.response?.data?.message}` };
   }
 
   if (success) redirect("/dashboard");
@@ -66,8 +64,8 @@ export async function loginAction(formData: FormData) {
     }
     success = true;
   } catch (err: any) {
-    console.log("{ error: Invalid email or password }");
-    return;
+    console.log(err.response?.data);
+    return { error: "Invalid email or password" };
   }
   if (success) redirect("/dashboard");
 }

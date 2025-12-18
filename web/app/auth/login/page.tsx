@@ -1,13 +1,21 @@
+"use client";
+
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import FormError from "@/components/ui/FormError";
 import { loginAction } from "../actions";
+import { useState } from "react";
 
 export default function LoginPage() {
+  const [error, setError] = useState<string | undefined>();
+  async function onSubmit(data: FormData) {
+    const result = await loginAction(data);
+    if (result?.error) setError(result.error);
+  }
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
       <form
-        action={loginAction}
+        action={onSubmit}
         className="bg-white p-8 rounded-xl shadow-md w-full max-w-md"
       >
         <h1 className="text-3xl font-bold text-center mb-6">Login</h1>
@@ -22,7 +30,7 @@ export default function LoginPage() {
           <Input name="password" type="password" required />
         </label>
 
-        <FormError message={undefined} />
+        <FormError message={error} />
 
         <Button type="submit" className="w-full mt-4">
           Login
