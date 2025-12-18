@@ -23,7 +23,7 @@ export default async function CourseViewPage({
     <section>
       <h1 className="text-3xl font-bold mb-4">{course.title}</h1>
 
-      <p className="mb-4 text-gray-700">{course.description}</p>
+      <p className="mb-4 text-gray-500">{course.description}</p>
 
       {isInstructor ? (
         <>

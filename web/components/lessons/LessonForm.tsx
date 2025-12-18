@@ -31,7 +31,7 @@ export default function LessonForm({
       <textarea
         name="content"
         placeholder="Lesson Content"
-        className="w-full border p-3 rounded-md h-48"
+        className="w-full border p-3 rounded-md h-48 dark:focus:outline-none dark:bg-gray-700 dark:border-gray-600"
         defaultValue={defaultValues?.content}
         required
       />

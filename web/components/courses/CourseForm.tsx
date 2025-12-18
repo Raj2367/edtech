@@ -31,7 +31,7 @@ export default function CourseForm({
       <textarea
         name="description"
         placeholder="Course Description"
-        className="w-full border p-3 rounded-md h-32"
+        className="w-full border p-3 rounded-md h-32 dark:focus:outline-none dark:bg-gray-700 dark:border-gray-600"
         defaultValue={defaultValues?.description}
       />
 

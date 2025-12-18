@@ -49,10 +49,10 @@ export default async function DashboardPage() {
               courses.map((course) => (
                 <div
                   key={course._id}
-                  className="p-4 border rounded-md bg-white shadow-sm"
+                  className="p-4 border rounded-md bg-white shadow-sm shadow-black/50 dark:bg-gray-700 dark:border-gray-600"
                 >
                   <h3 className="text-lg font-semibold">{course.title}</h3>
-                  <p className="text-gray-600 text-sm line-clamp-2">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-2">
                     {course.description}
                   </p>
 

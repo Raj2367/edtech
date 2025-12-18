@@ -26,7 +26,7 @@ export default function ReusableLayout({ children }: { children: ReactNode }) {
       )}
       <aside
         className={clsx(
-          "fixed md:static top-0 left-0 h-full w-64 bg-white shadow-md p-6 z-50 transition-transform",
+          "fixed md:static top-0 left-0 h-full w-64 bg-white dark:bg-gray-700 shadow-md p-6 z-50 transition-transform",
           open ? "translate-x-0" : "-translate-x-full",
           "md:translate-x-0"
         )}

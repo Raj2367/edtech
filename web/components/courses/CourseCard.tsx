@@ -2,10 +2,10 @@ export default function CourseCard({ course }: any) {
   return (
     <a
       href={`/courses/${course.slug}`}
-      className="block p-4 bg-white shadow-sm rounded-md border hover:shadow-md transition"
+      className="block p-4 bg-white shadow-sm rounded-md border hover:shadow-md transition dark:bg-gray-700 dark:border-gray-600"
     >
       <h3 className="text-lg font-semibold">{course.title}</h3>
-      <p className="text-sm text-gray-600 line-clamp-2">{course.description}</p>
+      <p className="text-sm text-gray-600 line-clamp-2 dark:text-gray-300">{course.description}</p>
     </a>
   );
 }

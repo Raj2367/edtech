@@ -34,7 +34,7 @@ export default async function LessonListPage({
           {lessons.map((lesson: any) => (
             <li
               key={lesson._id}
-              className="p-4 bg-white border rounded flex justify-between"
+              className="p-4 bg-white border rounded flex justify-between dark:bg-gray-700 dark:border-gray-600"
             >
               <span>{lesson.title}</span>
               <a
