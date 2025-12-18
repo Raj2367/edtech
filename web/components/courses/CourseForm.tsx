@@ -41,9 +41,7 @@ export default function CourseForm({
 
       <FormError message={error} />
 
-      <Button type="submit" className="w-full">
-        {defaultValues ? "Update Course" : "Create Course"}
-      </Button>
+      <Button label={defaultValues ? "Update Course" : "Create Course"} />
     </form>
   );
 }

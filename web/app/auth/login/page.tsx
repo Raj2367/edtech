@@ -32,9 +32,7 @@ export default function LoginPage() {
 
         <FormError message={error} />
 
-        <Button type="submit" className="w-full mt-4">
-          Login
-        </Button>
+        <Button label="login"/>
 
         <p className="text-center text-sm mt-4">
           Don’t have an account?{" "}

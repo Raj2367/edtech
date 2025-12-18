@@ -1,19 +1,18 @@
-import clsx from "clsx";
+"use client";
 
-export default function Button({
-  children,
-  className,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+import { useFormStatus } from "react-dom";
+import Spinner from "@/components/ui/Spinner";
+
+export default function Button({ label }: { label: string }) {
+  const { pending } = useFormStatus();
+
   return (
     <button
-      {...props}
-      className={clsx(
-        "px-6 py-2 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 transition",
-        className
-      )}
+      type="submit"
+      disabled={pending}
+      className="w-full flex justify-center items-center gap-2 bg-blue-600 text-white py-2 rounded"
     >
-      {children}
+      {pending ? <Spinner /> : label}
     </button>
   );
 }

@@ -37,9 +37,7 @@ export default function RegisterPage() {
 
         <FormError message={error} />
 
-        <Button type="submit" className="w-full mt-4">
-          Register
-        </Button>
+        <Button label="Register"/>
 
         <p className="text-center text-sm mt-4">
           Already have an account?{" "}

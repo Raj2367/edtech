@@ -42,9 +42,7 @@ export default function LessonForm({
 
       <FormError message={error} />
 
-      <Button type="submit">
-        {defaultValues ? "Update Lesson" : "Create Lesson"}
-      </Button>
+      <Button label={defaultValues ? "Update Lesson" : "Create Lesson"} />
     </form>
   );
 }
