@@ -40,6 +40,17 @@ app.use((req, _res, next) => {
 app.use("/api", routes);
 
 /**
+ * Health endpoint — used by Render deployment system
+ */
+app.get("/health", (_req, res) => {
+  res.status(200).json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString()
+  });
+});
+
+/**
  * Error handler should be the last piece of middleware
  */
 app.use(errorHandler);
