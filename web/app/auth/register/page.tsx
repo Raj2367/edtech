@@ -13,25 +13,25 @@ export default function RegisterPage() {
     if (result?.error) setError(result.error);
   }
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+    <div className="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900 px-4">
       <form
         action={onSubmit}
-        className="bg-white p-8 rounded-xl shadow-md w-full max-w-md"
+        className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-md w-full max-w-md"
       >
         <h1 className="text-3xl font-bold text-center mb-6">Create Account</h1>
 
         <label className="block mb-4">
-          <span className="text-gray-700 font-medium">Name</span>
+          <span className="font-medium">Name</span>
           <Input name="name" required />
         </label>
 
         <label className="block mb-4">
-          <span className="text-gray-700 font-medium">Email</span>
+          <span className="font-medium">Email</span>
           <Input name="email" type="email" required />
         </label>
 
         <label className="block mb-4">
-          <span className="text-gray-700 font-medium">Password</span>
+          <span className="font-medium">Password</span>
           <Input name="password" type="password" required />
         </label>
 
