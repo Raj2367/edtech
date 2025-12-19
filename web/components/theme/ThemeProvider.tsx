@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
+import DarkModeToggle from "./DarkmodeToggle";
 
 const ThemeContext = createContext({
   toggle: () => {},
@@ -23,7 +24,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <ThemeContext.Provider value={{ toggle }}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={{ toggle }}>
+      <div className="fixed right-6 top-4">
+        <DarkModeToggle isDark={dark}/>
+      </div>
+      {children}
+    </ThemeContext.Provider>
   );
 }
 
