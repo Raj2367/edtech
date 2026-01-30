@@ -1,9 +1,9 @@
 "use client";
 import { useTheme } from "./ThemeProvider";
 
-export default function DarkModeToggle(props) {
-  const { toggle } = useTheme();
-  const { isDark } = props;
+export default function DarkModeToggle() {
+  const { isDark, toggle } = useTheme();
+
   return (
     <button
       onClick={toggle}

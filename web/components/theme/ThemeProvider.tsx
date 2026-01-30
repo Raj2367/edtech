@@ -1,33 +1,24 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import DarkModeToggle from "./DarkmodeToggle";
 
-const ThemeContext = createContext({
-  toggle: () => {},
-});
+type ThemeContextType = {
+  isDark: boolean;
+  toggle: () => void;
+};
+
+const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [dark, setDark] = useState<boolean | null>(null);
+  const [isDark, setIsDark] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem("theme");
-
-    if (stored) {
-      const isDark = stored === "dark";
-      document.documentElement.classList.toggle("dark", isDark);
-      setDark(isDark);
-    } else {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      document.documentElement.classList.toggle("dark", prefersDark);
-      setDark(prefersDark);
-    }
+    const isDarkMode = document.documentElement.classList.contains("dark");
+    setIsDark(isDarkMode);
   }, []);
 
   const toggle = () => {
-    setDark((prev) => {
+    setIsDark((prev) => {
       const next = !prev;
       document.documentElement.classList.toggle("dark", next);
       localStorage.setItem("theme", next ? "dark" : "light");
@@ -36,13 +27,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <ThemeContext.Provider value={{ toggle }}>
-      <div className="fixed right-6 top-4">
-        <DarkModeToggle isDark={dark} />
-      </div>
+    <ThemeContext.Provider value={{ isDark: isDark ?? false, toggle }}>
       {children}
     </ThemeContext.Provider>
   );
 }
 
-export const useTheme = () => useContext(ThemeContext);
+export function useTheme() {
+  const context = useContext(ThemeContext);
+  if (!context) throw new Error("useTheme must be used within ThemeProvider");
+  return context;
+}
