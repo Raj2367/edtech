@@ -32,13 +32,32 @@ export default function LoginPage() {
 
         <FormError message={error} />
 
-        <Button label="login"/>
+        <Button label="login" />
 
         <p className="text-center text-sm mt-4">
           Don’t have an account?{" "}
           <a href="/auth/register" className="text-blue-600 hover:underline">
             Register
           </a>
+        </p>
+        <p className="mt-8">
+          <div className="text-center text-sm italic">
+            <h1>We have role based access for this application</h1>
+          </div>
+          <ul className="text-xs list-disc italic mt-2">
+            <li>
+              For login as a <span className="font-bold">Instructor</span>{" "}
+              please use following credentials
+              <div>Email : instructor@example.com</div>
+              <div>Password : InstructorPass123!</div>
+            </li>
+            <li>
+              For login as a <span className="font-bold">Student</span> please
+              use following credentials
+              <div>Email : student@example.com</div>
+              <div>Password : StudentPass123!</div>
+            </li>
+          </ul>
         </p>
       </form>
     </div>
