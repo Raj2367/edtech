@@ -40,7 +40,7 @@ export default function LoginPage() {
             Register
           </a>
         </p>
-        <p className="mt-8">
+        <div className="mt-8">
           <div className="text-center text-sm italic">
             <h1>We have role based access for this application</h1>
           </div>
@@ -58,7 +58,7 @@ export default function LoginPage() {
               <div>Password : StudentPass123!</div>
             </li>
           </ul>
-        </p>
+        </div>
       </form>
     </div>
   );
