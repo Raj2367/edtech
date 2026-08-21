@@ -13,6 +13,8 @@ const envSchema = z.object({
   JWT_SECRET: z.string().min(16),
   COOKIE_DOMAIN: z.string(),
   PORT: z.string().optional(),
+  SENDGRID_API_KEY: z.string().startsWith("SG."),
+  FROM_EMAIL: z.email(),
 });
 
 const parsed = envSchema.safeParse(process.env);

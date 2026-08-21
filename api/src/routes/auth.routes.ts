@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { z } from "zod";
-import { login, logout, me, register } from "../controllers/auth.controller";
+import { login, logout, me, register, sendOTP } from "../controllers/auth.controller";
 import { validate } from "../middleware/validate";
 import { authRateLimiter } from "../middleware/rateLimit";
 import { authGuard } from "../middleware/auth";
@@ -15,12 +15,22 @@ const RegisterSchema = z.object({
   email: z.email(),
   password: z.string().min(6),
   role: z.enum(["ADMIN", "INSTRUCTOR", "STUDENT"]).optional(),
+  otp: z.string().length(6),
+});
+
+const SendOTPSchema = z.object({
+  email: z.email(),
 });
 
 const LoginSchema = z.object({
   email: z.email(),
   password: z.string().min(6),
 });
+
+/**
+ * POST /api/auth/send-otp
+ */
+router.post("/send-otp", validate(SendOTPSchema), sendOTP);
 
 /**
  * POST /api/auth/register

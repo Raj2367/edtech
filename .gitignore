@@ -1,0 +1,26 @@
+# Dependency folders
+node_modules/
+**/node_modules/
+
+# Next.js build outputs
+.next/
+**/.next/
+next-env.d.ts
+
+# Production build outputs (Express / NestJS)
+dist/
+**/dist/
+build/
+**/build/
+
+# Environment files and Secrets
+.env
+**/.env
+.env*.local
+
+# System/OS logs
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+coverage

@@ -4,6 +4,20 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { api } from "@/lib/api";
 
+export async function sendOtpAction(formData: FormData) {
+  const email = formData.get("email") as string;
+
+  try {
+    await api.post("/api/auth/send-otp", { email });
+    return { success: true };
+  } catch (err: any) {
+    console.error("OTP generation failed:", err?.response?.data);
+    return {
+      error:
+        err?.response?.data?.message || "Failed to send verification email.",
+    };
+  }
+}
 /**
  * Register Action
  */
@@ -11,12 +25,13 @@ export async function registerAction(formData: FormData) {
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
+  const otp = formData.get("otp") as string;
   let success = false;
   try {
     const res = await api.post(
       "/api/auth/register",
-      { name, email, password },
-      { withCredentials: true }
+      { name, email, password, otp },
+      { withCredentials: true },
     );
 
     const cookie = res.headers["set-cookie"]?.[0];
@@ -50,7 +65,7 @@ export async function loginAction(formData: FormData) {
     const res = await api.post(
       "/api/auth/login",
       { email, password },
-      { withCredentials: true }
+      { withCredentials: true },
     );
 
     const cookie = res.headers["set-cookie"]?.[0];
