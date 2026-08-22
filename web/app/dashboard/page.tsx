@@ -68,8 +68,10 @@ export default async function DashboardPage() {
           </div>
         </>
       ) : (
-        <p className="text-gray-700">
-          Students will soon have personalized dashboards.
+        <p>
+          Students will soon have personalized dashboards.<br/><br/>
+          Please visit "My Courses" section for exciting learning oppurtunities.<br/><br/>
+          Stay tuned...
         </p>
       )}
     </div>

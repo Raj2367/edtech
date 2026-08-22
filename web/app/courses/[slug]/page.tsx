@@ -18,6 +18,11 @@ export default async function CourseViewPage({
   const course = res.data;
 
   const isInstructor = user?.userId === course.instructorId;
+  let lessons = [];
+  if (!isInstructor) {
+    const lessonsRes = await apiFetch(`/api/lessons/${course._id}`);
+    lessons = lessonsRes.data;
+  }
 
   return (
     <section>
@@ -45,7 +50,18 @@ export default async function CourseViewPage({
           </a>
         </>
       ) : (
-        <p className="text-gray-500">This is a course by an instructor.</p>
+        <ul className="space-y-3">
+          {lessons.map((lesson: any, idx: number) => (
+            <li
+              key={lesson._id}
+              className="p-4 bg-white border rounded flex justify-between dark:bg-gray-700 dark:border-gray-600"
+            >
+              <span>
+                Lesson {idx + 1} - {lesson.title}
+              </span>
+            </li>
+          ))}
+        </ul>
       )}
     </section>
   );

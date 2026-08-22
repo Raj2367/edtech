@@ -31,12 +31,14 @@ export default async function LessonListPage({
         <p className="text-gray-500">No lessons created yet.</p>
       ) : (
         <ul className="space-y-3">
-          {lessons.map((lesson: any) => (
+          {lessons.map((lesson: any, idx: number) => (
             <li
               key={lesson._id}
               className="p-4 bg-white border rounded flex justify-between dark:bg-gray-700 dark:border-gray-600"
             >
-              <span>{lesson.title}</span>
+              <span>
+                Lesson {idx + 1} - {lesson.title}
+              </span>
               <a
                 href={`/lessons/${lesson._id}`}
                 className="text-blue-600 hover:underline"
