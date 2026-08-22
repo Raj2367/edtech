@@ -54,11 +54,12 @@ export default async function CourseViewPage({
           {lessons.map((lesson: any, idx: number) => (
             <li
               key={lesson._id}
-              className="p-4 bg-white border rounded flex justify-between dark:bg-gray-700 dark:border-gray-600"
+              className="p-4 bg-white border rounded dark:bg-gray-700 dark:border-gray-600"
             >
               <span>
                 Lesson {idx + 1} - {lesson.title}
               </span>
+              <div className="mt-4 text-gray-400">{lesson.content}</div>
             </li>
           ))}
         </ul>
