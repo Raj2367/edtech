@@ -7,7 +7,7 @@ import { ReactNode, useState } from "react";
 export default function ReusableLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
-    <section className="min-h-screen flex">
+    <section className="flex">
       {/* Toggle Button (Mobile only) */}
       <button
         className="md:hidden fixed top-4 left-4 z-50 px-3 py-2 bg-blue-600 text-white rounded"
@@ -26,7 +26,7 @@ export default function ReusableLayout({ children }: { children: ReactNode }) {
       )}
       <aside
         className={clsx(
-          "fixed md:static top-0 left-0 h-full w-64 bg-white dark:bg-gray-700 shadow-md p-6 z-50 transition-transform",
+          "fixed md:static top-0 left-0 w-64 bg-white dark:bg-gray-700 shadow-md p-6 z-50 transition-transform",
           open ? "translate-x-0" : "-translate-x-full",
           "md:translate-x-0"
         )}
