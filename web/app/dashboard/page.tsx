@@ -14,7 +14,7 @@ export default async function DashboardPage() {
   let courses: any[] = [];
 
   if (isInstructor) {
-    const cookieHeader = cookies().get("token")?.value;
+    const cookieHeader: string = cookies().get("token")?.value;
     const res = await apiFetch("/api/courses/instructor", {
       headers: {
         Cookie: cookieHeader ? `token=${cookieHeader}` : "",
@@ -51,7 +51,18 @@ export default async function DashboardPage() {
                   key={course._id}
                   className="p-4 border rounded-md bg-white shadow-sm shadow-black/50 dark:bg-gray-700 dark:border-gray-600"
                 >
-                  <h3 className="text-lg font-semibold">{course.title}</h3>
+                  <div className="flex items-center justify-between gap-3">
+                    <h3 className="text-lg font-semibold line-clamp-1">
+                      {course.title}
+                    </h3>
+
+                    {course.published && (
+                      <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-1 text-xs font-medium text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                        <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                        Published
+                      </span>
+                    )}
+                  </div>
                   <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-2">
                     {course.description}
                   </p>
