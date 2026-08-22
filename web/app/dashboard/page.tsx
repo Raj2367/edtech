@@ -5,7 +5,6 @@ import { cookies } from "next/headers";
 
 export default async function DashboardPage() {
   const user = await getSession();
-
   if (!user) redirect("/auth/login");
 
   // Only instructors should see dashboard content (students get empty state)
@@ -26,7 +25,7 @@ export default async function DashboardPage() {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-4">
-        Welcome, {user.role === "INSTRUCTOR" ? "Instructor" : "Student"}
+        Welcome, {user.name ? user.name.trim().split(/\s+/)[0] : "User"}
       </h1>
 
       {isInstructor ? (

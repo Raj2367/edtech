@@ -99,6 +99,7 @@ export const register = asyncHandler(async (req: Request, res: Response) => {
   const token = signJWT({
     userId: user._id.toString(),
     role: user.role,
+    name: user.name,
   });
 
   setAuthCookie(res, token);
@@ -121,6 +122,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
   const token = signJWT({
     userId: user._id.toString(),
     role: user.role,
+    name: user.name,
   });
 
   setAuthCookie(res, token);

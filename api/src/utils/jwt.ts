@@ -8,6 +8,7 @@ import { ENV } from "../config/env";
 export interface JWTPayload {
   userId: string;
   role: "ADMIN" | "INSTRUCTOR" | "STUDENT";
+  name: string
 }
 
 /**
