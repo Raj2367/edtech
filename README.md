@@ -1,6 +1,6 @@
-# EdTech Course Manager
+# EduNexus - Courses, Lessons, and Student Learning Paths Management
 
-EdTech Course Manager** built to demonstrate secure CRUD operations, SSR/SSG, accessibility, testing discipline, and real‑world engineering considerations using **Next.js (App Router) + TypeScript + Express + MongoDB**.
+EduNexus** built to demonstrate SECURE CRUD operations, SSR/SSG, accessibility, testing discipline, and real‑world engineering considerations using **Next.js (App Router) + TypeScript + Express + MongoDB**.
 
 This project is intentionally designed to go **beyond a basic CRUD app** and showcase architectural thinking, scalability, security, and maintainability — aligned with modern industry expectations.
 
@@ -17,7 +17,7 @@ EdTech platforms in the real world require:
 * Automated testing
 * Clean UI with accessibility considerations
 
-**EdTech Course Manager** was built to simulate these constraints and demonstrate how to design, build, and reason about a real system — from ideation to deployment.
+**EduNexus** was built to simulate these constraints and demonstrate how to design, build, and reason about a real system — from ideation to deployment.
 
 ---
 
@@ -26,7 +26,7 @@ EdTech platforms in the real world require:
 ```
 ┌────────────────────────────┐
 │        Next.js App         │
-│  (SSR / SSG / Client UI)  │
+│  (SSR / SSG / Client UI)   │
 │                            │
 │  • Public pages (SSG/ISR)  │
 │  • Protected dashboard     │
@@ -35,17 +35,17 @@ EdTech platforms in the real world require:
                │ HttpOnly Cookies
                ▼
 ┌────────────────────────────┐
-│       Express API           │
-│   (TypeScript, REST)        │
-│                              │
-│  • Auth & Authorization     │
-│  • Secure CRUD APIs         │
-│  • Validation & Middleware  │
+│       Express API          │
+│   (TypeScript, REST)       │
+│                            │
+│  • Auth & Authorization    │
+│  • Secure CRUD APIs        │
+│  • Validation & Middleware │
 └──────────────┬─────────────┘
                │
                ▼
 ┌────────────────────────────┐
-│        MongoDB              │
+│        MongoDB             │
 │  (Users, Courses, Lessons) │
 └────────────────────────────┘
 ```
